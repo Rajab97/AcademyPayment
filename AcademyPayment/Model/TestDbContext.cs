@@ -1,4 +1,5 @@
 ﻿using AcademyPayment.DAL;
+using AcademyPayment.DAL.DbSets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,10 @@ namespace AcademyPayment.Model
     {
         public TestDbContext() : base("con")
         {
-            base.Initialize();
+            base.Initialize(this);
         }
+        public _DbSet<Person> People { get; set; }
+        public _DbSet<Car> Cars { get; set; }
+        public string Default { get; set; }
     }
 }

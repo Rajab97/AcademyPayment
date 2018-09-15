@@ -12,7 +12,6 @@ namespace AcademyPayment.DAL.DbSets
     {
         DbConnection IConnect.dbConnection { get; set; }
         DbProviderFactory IConnect.providerFactory { get; set; }
-
         public int Add(T Element)
         {
             throw new NotImplementedException();

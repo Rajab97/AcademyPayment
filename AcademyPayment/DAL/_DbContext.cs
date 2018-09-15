@@ -35,8 +35,9 @@ namespace AcademyPayment.DAL
         /// Initialize DbSets
         /// </summary>
         /// 
-        public void Initialize()
+        public void Initialize(_DbContext context)
         {
+            #region Exs
             //Type derivedType = this.GetType();
 
             //IEnumerable<PropertyInfo> dbSets = GetDbSets(derivedType);
@@ -45,7 +46,7 @@ namespace AcademyPayment.DAL
             //{
             //    IConnect dbSetInstance = (IConnect)Activator.CreateInstance(dbSet.GetType());
 
-                
+
             //    //Burada qaldig
             //    foreach (PropertyInfo dbSetProperty in dbSet.GetType().GetProperties())
             //    {
@@ -59,12 +60,28 @@ namespace AcademyPayment.DAL
             //        }
             //    }
             //}
+            #endregion
+            IEnumerable<PropertyInfo> InitializedDbSets = InitializeDbSets(context);
+            //Burda qaldim
         }
-        //private IEnumerable<PropertyInfo> GetDbSets(Type derivedClass)
-        //{
-        //   return derivedClass.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(m => m.GetType() == typeof(_DbSet<>));
-        //}
-
+        private IEnumerable<PropertyInfo> InitializeDbSets(_DbContext derivedClass)
+        {
+            IEnumerable<PropertyInfo> properties = derivedClass.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (PropertyInfo item in properties)
+            {
+                if (item.PropertyType.IsGenericType)
+                {
+                    Type GenericDefinition = item.PropertyType.GetGenericTypeDefinition();
+                    if (GenericDefinition == typeof(_DbSet<>))
+                    {
+                        Type[] types = item.PropertyType.GetGenericArguments();
+                        Type constructed = GenericDefinition.MakeGenericType(types);
+                        item.SetValue(derivedClass, Activator.CreateInstance(constructed));
+                        yield return item;
+                    }
+                }
+            }
+        }
         /// <summary>
         /// connect to database 
         /// </summary>

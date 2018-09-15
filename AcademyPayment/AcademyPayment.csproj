@@ -52,6 +52,7 @@
     <Compile Include="Configuration\IConfiguration.cs" />
     <Compile Include="DAL\DbSets\IDbSet.cs" />
     <Compile Include="DAL\DbSets\_DbSet.cs" />
+    <Compile Include="DAL\IConnect.cs" />
     <Compile Include="DAL\IDbContext.cs" />
     <Compile Include="DAL\QueryGenetare\DbGenerators\SqlQueryGenerator.cs" />
     <Compile Include="DAL\QueryGenetare\DbQueryGenerator.cs" />
@@ -68,6 +69,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Car.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\TestDbContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
