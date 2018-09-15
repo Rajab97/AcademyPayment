@@ -8,6 +8,6 @@ namespace AcademyPayment.Configuration
 {
     public interface IConfiguration
     {
-        string ReadValue(string key);
+        string GetProviderName(string connectionName);
     }
 }

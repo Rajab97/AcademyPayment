@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AcademyPayment.DAL.DbSets
 {
-    public class _DbSet<T> : IDbSet<T> where T:class
+    public class _DbSet<T> :IConnect, IDbSet<T> where T:class
     {
+        DbConnection IConnect.dbConnection { get; set; }
+        DbProviderFactory IConnect.providerFactory { get; set; }
+
         public int Add(T Element)
         {
             throw new NotImplementedException();

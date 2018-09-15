@@ -30,7 +30,7 @@ namespace AcademyPayment.Extensions
         public static string GetProviderName(string key)
         {
             //Read providerName from configuration file
-            string provider = dbConfiguration.ReadValue(key);
+            string provider = dbConfiguration.GetProviderName(key);
 
             if (String.IsNullOrEmpty(provider))
                 throw new InvalidProviderException("This key is not valid !!!");

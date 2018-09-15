@@ -14,9 +14,11 @@ namespace AcademyPayment.Configuration
              return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
 
-        public override string ReadValue(string key)
+        public override string GetProviderName(string connectionName)
         {
-            return ConfigurationManager.AppSettings[key];
+            return ConfigurationManager.ConnectionStrings[connectionName].ProviderName;
         }
+
+     
     }
 }
